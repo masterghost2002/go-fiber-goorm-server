@@ -27,6 +27,7 @@ func main() {
 	// group for post request
 	post := app.Group("/post", auth.AuthUser)
 	post.Get("/", handlers.GetPosts)
+	post.Post("/add-post", handlers.AddPost)
 
 	app.Listen(":3000")
 }
