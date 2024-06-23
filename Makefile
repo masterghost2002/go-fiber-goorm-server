@@ -9,7 +9,7 @@ build:
 
 # Run the application in development mode with watch using Air
 run:
-	air
+	go run ./cmd/server/server.go
 
 # Clean build artifacts
 clean:

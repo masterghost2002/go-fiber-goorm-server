@@ -21,7 +21,7 @@ func main() {
 	// group for auth request
 	auth := app.Group("/auth")
 	auth.Post("/register", handlers.RegisterUser)
-	auth.Get("/:userId", handlers.GetUserById)
+	auth.Post("/login", handlers.GetUserById)
 
 	app.Listen(":3000")
 }
