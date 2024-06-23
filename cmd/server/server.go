@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/masterghost2002/go-todo/internals/auth"
 	"github.com/masterghost2002/go-todo/internals/db"
 	"github.com/masterghost2002/go-todo/internals/handlers"
 )
@@ -19,15 +20,13 @@ func main() {
 	})
 
 	// group for auth request
-	auth := app.Group("/auth")
-	auth.Post("/register", handlers.RegisterUser)
-	auth.Post("/login", handlers.GetUserById)
+	authRouter := app.Group("/auth")
+	authRouter.Post("/register", handlers.RegisterUser)
+	authRouter.Post("/login", handlers.GetUserById)
 
 	// group for post request
-	post := app.Group("/post")
-	post.Get("/", func(c *fiber.Ctx) error {
-		return c.SendStatus(200)
-	})
+	post := app.Group("/post", auth.AuthUser)
+	post.Get("/", handlers.GetPosts)
 
 	app.Listen(":3000")
 }
