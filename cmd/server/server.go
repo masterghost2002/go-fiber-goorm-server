@@ -23,5 +23,11 @@ func main() {
 	auth.Post("/register", handlers.RegisterUser)
 	auth.Post("/login", handlers.GetUserById)
 
+	// group for post request
+	post := app.Group("/post")
+	post.Get("/", func(c *fiber.Ctx) error {
+		return c.SendStatus(200)
+	})
+
 	app.Listen(":3000")
 }
