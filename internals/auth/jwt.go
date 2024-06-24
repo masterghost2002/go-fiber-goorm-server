@@ -6,9 +6,10 @@ import (
 	"errors"
 
 	"github.com/golang-jwt/jwt/v4"
+	config "github.com/masterghost2002/go-todo/configs"
 )
 
-var jwtKey = []byte("secret")
+var jwtKey = []byte(config.ENVS.JWTSecret)
 
 type UserPayload struct {
 	jwt.StandardClaims
